@@ -9,6 +9,9 @@
 import UIKit
 
 class SearchBrowseViewController: UIViewController {
+    
+    var categories = ["Music", "Business", "Food & Drink", "Community", "Arts", "Film & Media", "Sports & Fitness", "Charity", "Fashion"]
+    var categoriesImage = ["event1", "business", "food", "community", "arts", "film", "sports", "charity", "fashion" ]
 
     @IBOutlet weak var collectionView: UICollectionView!{
         didSet{
@@ -40,12 +43,12 @@ extension SearchBrowseViewController: UICollectionViewDelegate, UICollectionView
         
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return categoriesImage.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCell", for: indexPath) as! CategoriesCell
-        cell.categoriesImage.image = UIImage(named: "Home")
-        cell.categoriesName.text = " "
+        cell.categoriesImage.image = UIImage(named: categoriesImage[indexPath.row])
+        cell.categoriesName.text = categories[indexPath.row]
         return cell
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
